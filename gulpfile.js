@@ -33,24 +33,27 @@ gulp.task('image2', function() {
 });
 */
 gulp.task('imagesize1', function() {
-    gulp.src('src/images/**/*')
+    gulp.src('dist/images/**/*')
         .pipe(imageResize({
-            width: 300,
+            width: 200,
             crop: false,
-            upscale: false
+            upscale: false,
+            quality: 2,
+            imageMagick: true
         }))
-        .pipe(gulp.dest('dist/images/'));
+        .pipe(gulp.dest('dist/images/temp/'));
 });
 
-
 gulp.task('imagesize2', function() {
-    gulp.src('src/views/images/**/*')
+    gulp.src('dist/views/images/**/*')
         .pipe(imageResize({
-            width: 300,
+            width: 200,
             crop: false,
-            upscale: false
+            upscale: false,
+            quality: 2,
+            imageMagick: true
         }))
-        .pipe(gulp.dest('dist/views/images/'));
+        .pipe(gulp.dest('dist/views/images/temp/'));
 });
 // Concatenate & Minify JS
 gulp.task('js', function() {

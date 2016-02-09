@@ -161,13 +161,20 @@ var pizzaElementGenerator = function(i) {
     pizzaContainer.appendChild(pizzaDescriptionContainer);
     return pizzaContainer;
 }
+
+// BR added element object to create two properties for use as globals
+//  cache stores the pizza elements array
+//  nameClass stores the name of the current Class...
 var element = {
     cache: document.getElementsByClassName('randomPizzaContainer'),
     nameClass: 'randomPizzaContainer'
 }
+
+// BR added updateElement function to cache the pizza elements outside the scope of any for loop
 var updateElement = function(name) {
     element.cache = document.getElementsByClassName(name);
 }
+
 updateElement(element.nameClass);
 var resizePizzas = function(size) {
     window.performance.mark("mark_start_resize");
@@ -189,7 +196,7 @@ var resizePizzas = function(size) {
     }
     changeSliderLabel(size);
 
-    function sizeSwitcher(size) {
+    function sizeSwitcher(size) { // ***** BR changed return value to a string of the Class name
         switch (size) {
             case "1":
                 return 'randomPizzaContainerSmall';
@@ -209,9 +216,9 @@ var resizePizzas = function(size) {
                 break;
             }
             element.cache[i].className = element.nameClass;
-            i -= 1;
+            i -= 1; // the 'className' method above actually shortens the array so keep the i=0 until if == undefined...
         }
-        updateElement(element.nameClass);
+        updateElement(element.nameClass); // get the new set of elements with the new class name to be ready for the next style change.
     }
     changePizzaSizes(size);
     window.performance.mark("mark_end_resize");
@@ -245,10 +252,10 @@ function updatePositions() {
     var items = document.querySelectorAll('.mover');
     var temp = [];
     var phase = [];
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 5; i++) { // removed phase calc form main loop
         phase.push(Math.sin(document.body.scrollTop / 1250 + i) * 100);
     }
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0; i < items.length; i++) { // separate style changes from caluclations to avoid xs layouts.
         temp[i] = items[i].basicLeft + phase[i % 5] + 'px';
     }
     for (var i = 0; i < items.length; i++) {
@@ -265,7 +272,7 @@ window.addEventListener('scroll', updatePositions);
 window.onload = function() {
     var cols = 8;
     var s = 256;
-    for (var i = 0; i < (window.innerHeight / 20); i++) {
+    for (var i = 0; i < (window.innerHeight / 20); i++) { // reduce number of pizzas to be proportionate to screen size
         var elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = "images/pizza.png";

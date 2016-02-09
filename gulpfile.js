@@ -89,29 +89,29 @@ gulp.task('html', function() {
         .pipe(gulp.dest('dist/'));
 });
 
-//gulp.task('images', function() {
-//return gulp.src('src/images/**/*')
-/*      .pipe(imagemin({
+gulp.task('images', function() {
+    return gulp.src('dist/images/**/*')
+        .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{
                 removeViewBox: false
             }],
             //use: [pngquant()]
         }))
-        .pipe(gulp.dest('dist/images/temp'));
+        .pipe(gulp.dest('dist/images/temp/'));
 });
 
-gulp.task('images2', function() {         */
-//return gulp.src('src/views/images/**/*')
-/*      .pipe(imagemin({
+gulp.task('images2', function() {
+    return gulp.src('dist/views/images/**/*')
+        .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{
                 removeViewBox: false
             }],
             //use: [pngquant()]
         }))
-        .pipe(gulp.dest('dist/views/images/temp'));
-});   */
+        .pipe(gulp.dest('dist/views/images/temp/'));
+});
 
 // Watch for changes in files
 //.task('watch', function() {
@@ -124,4 +124,4 @@ gulp.task('images2', function() {         */
 //  gulp.watch(src + '*.html', ['html']);
 //});
 // Default Task
-gulp.task('default', ['imagesize1', 'imagesize2', 'js', 'js2', 'css', 'css2', 'html', 'html2']);
+gulp.task('default', ['images', 'images2', 'imagesize1', 'imagesize2', 'js', 'js2', 'css', 'css2', 'html', 'html2']);

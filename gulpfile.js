@@ -33,21 +33,21 @@ gulp.task('image2', function() {
 });
 */
 gulp.task('imagesize1', function() {
-    gulp.src('dist/images/**/*')
+    gulp.src('src/images/**/*')
         .pipe(imageResize({
-            width: 200,
+            width: 70,
             crop: false,
             upscale: false,
-            quality: 2,
+            quality: 5,
             imageMagick: true
         }))
         .pipe(gulp.dest('dist/images/temp/'));
 });
 
 gulp.task('imagesize2', function() {
-    gulp.src('dist/views/images/**/*')
+    gulp.src('src/views/images/**/*')
         .pipe(imageResize({
-            width: 200,
+            width: 360,
             crop: false,
             upscale: false,
             quality: 2,

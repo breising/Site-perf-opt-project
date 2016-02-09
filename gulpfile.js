@@ -127,4 +127,4 @@ gulp.task('images2', function() {
 //  gulp.watch(src + '*.html', ['html']);
 //});
 // Default Task
-gulp.task('default', ['images', 'images2', 'imagesize1', 'imagesize2', 'js', 'js2', 'css', 'css2', 'html', 'html2']);
+gulp.task('default', [ /*'images', 'images2', 'imagesize1', 'imagesize2',*/ 'js', 'js2', 'css', 'css2', 'html', 'html2']);
